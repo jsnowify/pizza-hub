@@ -65,17 +65,6 @@ function Header() {
   );
 }
 
-function Menu() {
-  return (
-    <main className="menu">
-      <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </main>
-  );
-}
-
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
@@ -88,13 +77,42 @@ function Footer() {
     </footer>
   );
 }
-
-function Pizza() {
+function Menu() {
   return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    <main className="menu">
+      <h2>Our Menu</h2>
+
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} />
+        ))}
+      </div>
+
+      {/* <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price="10"
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        price="12"
+        photoName="pizzas/funghi.jpg"
+      /> */}
+    </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
     </div>
   );
 }
